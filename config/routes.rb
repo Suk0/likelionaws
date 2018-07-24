@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   get 'likes/likes_toggle/:id' => 'likes#likes_toggle'
   post 'likes/likes_toggle'
   
+  get 'post/adaxCall' => 'post#ajaxCall'
+  
   #아이디 앞에 땡땡 붙는거 아이디가 변수라는거 알려주는거임!
   #슬래쉬는 뷰로, 샵은 컨트롤러 액션으로 간다! 새로 변형된 주소는 가는 방법 몰라서 우리가 정해준거
   #view routes controll edit 이렇게..!

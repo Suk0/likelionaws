@@ -67,3 +67,17 @@ class PostController < ApplicationController
     end
   end
 end
+
+  def ajaxCall
+    
+    count = params[:count].to_i
+    @item = Post.all.at(count)
+    @return_Value = {
+      "id" => @item.id,
+      "user" => @item.user_id,
+      "title" => @item.title,
+      "time" => @item.created_at
+    }
+    render jason: @return_Value
+    
+  end

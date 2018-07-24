@@ -1,4 +1,5 @@
 <%= render "navbar" %>
+
 <div class="container">
     <table class="table table-striped">
       <thead>
@@ -23,4 +24,93 @@
     <a href="/post/new" id="button">
         <button type="button" class="btn btn-success">글쓰기</button>
     </a>
+
+    <% @post.each do |p| %>
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="https://image.fmkorea.com/files/attach/new/20180627/486616/53929437/1125408696/3d94f3de6495906341f10d941b69ec3c.jpeg" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title"><a href="/post/show/<%= p.id %>"><%= p.title %></a></h5>
+        <p class="card-text"><%= p.id %></p>
+        <a href="#" class="btn btn-primary"><%= p.user.username %></a>
+        <div><%= p.created_at %></div>
+      </div>
+    </div>
 </div>
+<% end %>
+
+<div id = "enters"></div>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+
+<script>
+    
+    var count = 4;
+    var stringTemp = "";
+    
+    function call(){
+        
+        $.ajax({
+            type:"get",
+            url:"/post/ajaxCall",
+            data : {'count' : count},
+            dataType : "json",
+            success: function(data){
+                alert(data["title"]);
+            },
+            error: function(error) {
+                alert(error);
+            }  
+        });
+}
+</script>
+
+<script>
+    var page = 1;
+
+$(window).scroll(function() {
+    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+        // page++;
+    //   $("#enters").append("<h1>Page</h1> " + page );
+      call();
+    }
+});
+</script>
+
+
+<!--<button onclick = "hi_1()">hi</button>-->
+<!--<button onclick - "hi_2('수경', '멋쟁이')">hi2</button>-->
+
+<!--<input id = "idv_1"></input>-->
+<!--<button onclick = "add_1()"> + </button>-->
+<!--<input id = "idv_2"></input>-->
+<!--=-->
+<!--<input id = "idr_1"></input>-->
+
+<!--<script>-->
+
+<!--    function add_1(){-->
+<!--        var A = document.getElementById("idv_1").value;-->
+<!--        var B = document.getElementById("idv_2").value;-->
+<!--        var C = Number(A) + Number(B);-->
+<!--        alert(C);-->
+<!--        document.getElementById("idr_1").value = C;-->
+<!--    }-->
+    
+<!--</script>-->
+
+<!--<span>1</span>-->
+<!--<button onclick = "add_2(<#%= 1 %>, <#%= 2 %>)">+</button>-->
+<!--<span>2</span>-->
+<!--=-->
+<!--<input id = "idr_2"></input>-->
+
+<!--<script>-->
+    
+<!--    function add_2(_value1, _value2){-->
+<!--        document.getElementById("idr_2").value = (_value1 + _value2);-->
+<!--    }-->
+    
+<!--</script>-->
